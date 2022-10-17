@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %} {% if post %} Редактирование записи {% else %} Новая запись {% endif %} {% endblock %}
+{% block content %}
+{% load user_filters %}
+
+
+ <div class="row justify-content-center">
+    <div class="col-md-6 p-5">
+      <div class="card">
+        {% if post_id %}
+          <div class="card-header">Редактирование записи</div>
+        {% else %}
+          <div class="card-header">Новая запись</div>
+        {% endif %}
+        <div class="card-body">
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+            Хуйню ввел.
+          </div>
+          {% endif %} 
+          <form action="{% if post_id %} {% url 'post_edit' username post_id %} {% else %} {% url 'new_post' %} {% endif %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+           <!----  <div class="form-group row" aria-required="true">
+                <label for="{{ form.group.label }}" class="col-md-4 col-form-label text-md-right">{{ form.group.label }}</label>
+                <div class="col-md-6">
+                    {{ form.group|addclass:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="{{ form.text.label }}" class="col-md-4 col-form-label text-md-right">{{ form.text.label }}</label>
+              <div class="col-md-6">
+                  {{ form.text|addclass:"form-control" }}
+              </div>
+          </div>
+          <div class="form-image row" aria-required="true">
+            <label for="{{ form.image.label }}" class="col-md-4 col-form-label text-md-right">{{ form.image.label }}</label>
+            <div class="col-md-6">
+                {{ form.image }}
+            </div>
+        </div> -->
+        
+        {{ form.as_p }}
+            <div class="col-md-6 offset-md-4">
+              {% if post_id %}
+              <button type="submit" class="btn btn-primary">
+                Сохранить
+              </button>
+              {% else %}              
+                <button type="submit" class="btn btn-primary">
+                  Добавить
+                </button>
+                {% endif %}
+            </div>
+          </form>
+      </div> 
+       </div> 
+     </div>  
+   </div>  
+
+
+
+
+  
+
+{% endblock %}

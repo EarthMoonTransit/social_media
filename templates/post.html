@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+
+<main role="main" class="container">
+    <div class="row">
+        {% include 'includes/profile_name.html' %}
+        <div class="col-md-9">
+
+            <!-- Пост -->  
+            {% include "includes/post_items.html" with post=post %}
+            {% include "comments.html" %}
+     </div>
+   </div>
+</main>
+{% endblock %}
